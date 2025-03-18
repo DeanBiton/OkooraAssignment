@@ -7,7 +7,6 @@ namespace OkooraAssignment.Controllers
     [ApiController]
     public class ExchangeRateController : ControllerBase
     {
-        private const string FilePath = "exchange_rates.json"; // File to store rates
         private readonly RatePrinterService _ratePrinterService;
 
         public ExchangeRateController(RatePrinterService ratePrinterService)
@@ -20,11 +19,6 @@ namespace OkooraAssignment.Controllers
         {
             try
             {
-                if (!System.IO.File.Exists(FilePath))
-                {
-                    return NotFound("No saved exchange rates found.");
-                }
-
                 Dictionary<string, decimal> savedRates = await _ratePrinterService.GetSavedRatesFromFile();
 
                 // If a specific currency pair is requested
