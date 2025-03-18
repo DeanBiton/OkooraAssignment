@@ -8,10 +8,10 @@ namespace OkooraAssignment.Models.FxRateModels
         public bool Success { get; set; }
 
         [JsonPropertyName("terms")]
-        public string Terms { get; set; }
+        public string? Terms { get; set; }
 
         [JsonPropertyName("privacy")]
-        public string Privacy { get; set; }
+        public string? Privacy { get; set; }
 
         [JsonPropertyName("timestamp")]
         public long Timestamp { get; set; }
@@ -20,9 +20,23 @@ namespace OkooraAssignment.Models.FxRateModels
         public DateTime Date { get; set; }
 
         [JsonPropertyName("base")]
-        public string BaseCurrency { get; set; }
+        public string? BaseCurrency { get; set; }
 
         [JsonPropertyName("rates")]
-        public Dictionary<string, decimal> Rates { get; set; }
+        public Dictionary<string, decimal>? Rates { get; set; }
+
+        [JsonPropertyName("erroe")]
+        public ErrorDetails? Error { get; set; } // Add error object for handling API errors
+
+        public class ErrorDetails
+        {
+            public string? Code { get; set; }
+            public int Status { get; set; }
+            public string? Message { get; set; }
+            public string? Description { get; set; }
+            public string? Link { get; set; }
+            public string? DocsLink { get; set; }
+            public string? SupportEmail { get; set; }
+        }
     }
 }
